@@ -19,7 +19,7 @@
     align-self: center;
 }
 .btn button{
-    margin:auto 20px;
+    margin:auto 10px;
     padding: 5px 10px;
     font-size: 20px;
     border: 1px solid rgba(128, 128, 128, 0.699);
@@ -28,6 +28,7 @@
 .btn p{
     font-size: 15px;
     font-weight: 500;
+    margin-right: 10px;
 }
 .btn button:hover{
     background-color: rgb(183, 201, 218);
