@@ -1,0 +1,69 @@
+.profileContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.profileElement {
+    text-align: center;
+}
+
+.profileElement img {
+    width: 200px;
+    height: 200px;
+}
+
+.profileElement h4 {
+    font-size: 23px;
+    font-family: Tahoma;
+}
+
+.profileElement .details {
+    background-color: rgba(110, 109, 109, 0.425);
+    padding: 20px 40px;
+    min-width: 250px;
+    max-width: 500px;
+    border-radius: 10px;
+    margin: 10px 0;
+}
+
+.profileElement .details p {
+    line-height: 30px;
+    letter-spacing: 1px;
+}
+
+.profileElement .marking {
+    min-width: 250px;
+    max-width: 500px;
+    border-radius: 10px;
+    margin: 10px 0;
+    background-color: rgb(189, 187, 187);
+    padding: 20px 40px;
+    text-align: left;
+    box-shadow: 0 1px 4px rgb(36, 35, 35);
+}
+
+.profileElement .marking span {
+    margin-left: 10px;
+    color: rgba(0, 128, 0, 0.87);
+    cursor: pointer;
+    
+}
+
+.profileElement .logOut {
+    min-width: 250px;
+    max-width: 500px;
+    border-radius: 10px;
+    margin: 10px 0;
+    background-color: rgb(189, 187, 187);
+    padding: 20px 40px;
+    text-align: left;
+    box-shadow: 0 1px 4px rgb(36, 35, 35);
+}
+.profileElement .logOut span{
+    margin-left: 10px;
+    color: rgba(255, 0, 0, 0.801);
+    cursor: pointer;
+}
