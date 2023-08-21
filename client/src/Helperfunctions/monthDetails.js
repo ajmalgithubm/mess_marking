@@ -30,7 +30,7 @@ const nextMonthNumber = () => {
 
 const upcomingDateCurrentMonth = (year, month, upcoming = false) => {
     const formattedDate = [];
-    const firstDayMonth = new Date(year, month, upcoming ? new Date().getDate() : 1);
+    const firstDayMonth = new Date(year, month, upcoming ? new Date().getDate()+1 : 1);
     const lastDayMonth = new Date(year, month+1, 0);
     for(let currentDate = firstDayMonth; currentDate <= lastDayMonth; currentDate.setDate(currentDate.getDate()+1)){
         const formatedDate = currentDate.toLocaleDateString('en-IN', options)

@@ -20,7 +20,7 @@ const NavBar = () => {
                 <motion.div initial={{ x: '-100px', scale: 0 }}
                     animate={{ x: '0px', scale: 1, transition: { type: "easeInOut", duration: 0.5 , delay:1} }}
                     className={styles.navItem}>
-                    <h3>Marking</h3>
+                    <h3 onClick={() => navigate('/marking')}>Marking</h3>
                 </motion.div>
             </div>
         </div>

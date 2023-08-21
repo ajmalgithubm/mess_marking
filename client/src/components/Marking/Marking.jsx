@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styles from './Marking.module.css'
 import { currentMonthName, nextMonthName, upcomingDateCurrentMonth } from '../../Helperfunctions/monthDetails'
+
 const Marking = () => {
 
     // declare state for keeping the month Name current and next
@@ -8,7 +9,12 @@ const Marking = () => {
     const [selectMonth, setSelectMonth] = useState(currentMonthName())
     const [dayList, setDayList] = useState()
 
-    // useEffect Function setMonth Namcurrent Month and next Month for shows in options
+    // add Marking is function is trigger when the B, L ,S buttons pressed
+    const addMarking = (e, item) => {
+        alert(`Y0u marked ${e.target.value} for ${item}`)
+    }
+
+    // useEffect Function setMonth current Month and next Month for shows in options
     useEffect(() => {
 
         (selectMonth === monthName[0]) ? setDayList(
@@ -25,7 +31,9 @@ const Marking = () => {
         )
         console.log("selected Month", selectMonth)
         console.log("Months are", monthName)
-    }, [selectMonth])
+    }, [selectMonth, addMarking])
+
+
     return (
         <div className={styles.container}>
             <select id='month' onChange={(e) => setSelectMonth(e.target.value)}>
@@ -39,9 +47,9 @@ const Marking = () => {
                             return (
                                 <div className={styles.btn} key={item}>
                                     <p>{selectMonth}: {item.slice(0, 2)}</p>
-                                    <button value="B" date={item}>B</button>
-                                    <button value="L" date={item}>L</button>
-                                    <button value="S" date={item}>S</button>
+                                    <button value="B" name='B' onClick={(e) => addMarking(e, item)}>B</button>
+                                    <button value="L" name='L' onClick={(e) => addMarking(e, item)}>L</button>
+                                    <button value="S" name='S' onClick={(e) => addMarking(e, item)}>S</button>
                                 </div>
                             )
                         })
