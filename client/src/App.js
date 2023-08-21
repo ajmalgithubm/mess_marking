@@ -5,6 +5,7 @@ import Login from './components/Login/Login';
 import Profile from './components/Profile/Profile';
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import Marking from './components/Marking/Marking';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
