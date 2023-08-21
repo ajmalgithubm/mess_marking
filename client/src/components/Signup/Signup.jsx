@@ -11,13 +11,14 @@ const Signup = () => {
     const [title, setTitle] = useState("")
     const [personDetails, setPersonDetails] = useState({
         name: "",
-        year: 2019,
+        year: "",
         branch: "",
         email: "",
-        number: 123,
+        number: "",
         hostel: "",
         password: ""
     })
+    const {name, year, branch, email, number, hostel, password} = personDetails;
     const navigate = useNavigate();
 
     {/*omChange function trigger when the input valuechnages*/}
@@ -59,11 +60,22 @@ const Signup = () => {
             setStatus(true)
             setTitle(message)
             setType("success")
+            setPersonDetails({
+                name: "",
+                year: "",
+                branch: "",
+                email: "",
+                number: "",
+                hostel: "",
+                password: ""
+            })
+            document.getElementById("confirmPassword").value = "";
         }else{
             setStatus(true)
             setTitle(message)
             setType("error")
         }
+
     }
     return (
         <div className={styles.container}>
@@ -86,27 +98,27 @@ const Signup = () => {
                 </div>
                 <div className={styles.signupInput}>
                     {/* name */}
-                    <input type="text" placeholder='Name' id='name' name='name' onChange={onChange} />
+                    <input type="text" placeholder='Name' value={name} id='name' name='name' onChange={onChange} />
                 </div>
                 <div className={styles.signupInput}>
                     {/* Year */}
-                    <input type="number" name="year" id="year" placeholder='Year' onChange={onChange} />
+                    <input type="number" name="year" id="year" value={year} placeholder='Year' onChange={onChange} />
                 </div>
                 <div className={styles.signupInput}>
                     {/* Branch */}
-                    <input type="text" placeholder='Branch' id='branch' name='branch' onChange={onChange} />
+                    <input type="text" placeholder='Branch' value={branch} id='branch' name='branch' onChange={onChange} />
                 </div>
                 <div className={styles.signupInput}>
                     {/* email adress */}
-                    <input type="email" name="email" id="email" placeholder='Email' onChange={onChange} />
+                    <input type="email" name="email" value={email} id="email" placeholder='Email' onChange={onChange} />
                 </div>
                 <div className={styles.signupInput}>
                     {/* Phone Number */}
-                    <input type="number" name="number" id="phone" placeholder='Number' onChange={onChange} />
+                    <input type="number" name="number" value={number} id="phone" placeholder='Number' onChange={onChange} />
                 </div>
                 <div className={styles.signupInput}>
                     {/* Hostel */}
-                    <select name="hostel" id="" onChange={onChange}>
+                    <select name="hostel" id="" value={hostel} onChange={onChange}>
                         <option>Select Hostel</option>
                         <option value="mea">MEA</option>
                         <option value="LH">LH</option>
@@ -119,7 +131,7 @@ const Signup = () => {
                 </div>
                 <div className={styles.signupInput}>
                     {/* password */}
-                    <input type="password" name="password" id="password" placeholder='Password' onChange={onChange} />
+                    <input type="password" name="password" id="password" placeholder='Password' onChange={onChange} value={password}/>
                 </div>
                 <div className={styles.signupInput}>
                     {/* confirm password */}

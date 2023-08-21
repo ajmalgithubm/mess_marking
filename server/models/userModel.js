@@ -14,10 +14,13 @@ const userSchema = new mongoose.Schema({
         type:String,
     },
     email:{
-        type:String
+        type:String,
+        required:[true, "Email address is Required"],
+        unique:[true, "Email addess already exists"]
     }, 
     number:{
-        type:String
+        type:String,
+      
     },
     hostel:{
         type:String
@@ -28,8 +31,8 @@ const userSchema = new mongoose.Schema({
     }
 })
 
-userSchema.pre("save", function(){
-    this.password = bcrypt.hash(this.password, 12)
+userSchema.pre("save", async function(){
+    this.password = await bcrypt.hash(this.password, 12)
 })
 
 
