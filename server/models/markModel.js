@@ -4,7 +4,8 @@ const markingSchema = new mongoose.Schema({
     userId:String,
     year:Number,
     month:Number,
-    day:String,
+    day:Number,
+    date:String,
     mark:{
         B:{
             type:Number,

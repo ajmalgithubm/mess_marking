@@ -22,7 +22,7 @@ function Profile() {
            setUser(user)
         }
         verifyToken()
-    }, [])
+    }, [cookie, navigate])
 
     // logout The User
     const logOut = () => {

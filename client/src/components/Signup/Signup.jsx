@@ -22,7 +22,7 @@ const Signup = () => {
     const {name, year, branch, email, number, hostel, password} = personDetails;
     
 
-    {/*omChange function trigger when the input valuechnages*/}
+    // {/*omChange function trigger when the input valuechnages*/}
     const onChange = (e) => {
         const { name, value } = e.target;
         if (name === 'year' || name === 'number') {
@@ -37,9 +37,9 @@ const Signup = () => {
             })
         }
     }
-    {/*leave The confirm Input field this function will trigger */}
+    // {/*leave The confirm Input field this function will trigger */}
     const verifyConfirmPassword = (e) => {
-        if (e.target.value != personDetails.password) {
+        if (e.target.value !== personDetails.password) {
             setStatus(true);
             setTitle("Enter the correct password")
             setType('error')
@@ -47,7 +47,7 @@ const Signup = () => {
     }
 
 
-    { /*  function trigger when the form submit*/}
+    // { /*  function trigger when the form submit*/}
     const onHandleSubmit = async (e) => {
         e.preventDefault();
         const { data } = await axios.post('http://localhost:4000/signup', {

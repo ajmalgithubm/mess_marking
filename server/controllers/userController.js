@@ -65,25 +65,42 @@ module.exports.messMarking = async (req, res, next) => {
     const currentYear = new Date().getFullYear()
     console.log(currentMonth, currentYear);
     // for check document Exists in this month or add new documents
-    const currentMonthData = await Marking.find({ userId: _id, month: currentMonth+1, year: currentYear });
+    const currentMonthData = await Marking.find({ userId: _id, month: currentMonth + 1, year: currentYear });
     console.log(currentMonthData.length)
     // if current month details are null We create documnets for This month
     if (currentMonthData.length === 0) {
         const dateList = upcomingDateCurrentMonth(currentYear, currentMonth)
+        var i = 1;
         for (let date of dateList) {
-          console.log(date)
-            await Marking.create({ userId: _id, day: date.day, year: date.year, month: date.month, mark: { B:0, L:0, S:0 } });
+            console.log(date)
+            await Marking.create({ userId: _id, day: i, date: date.day, year: date.year, month: date.month, mark: { B: 0, L: 0, S: 0 } });
+            i += 1;
         }
     }
     // we check current month is less than of november/ december we don't need to create Next month 
-    if( currentMonth < 11){
-        const nextMonthData = await Marking.find({ userId: _id, month: currentMonth+2, year: currentYear});
-        if(nextMonthData.length === 0){
-            const dateList = upcomingDateCurrentMonth(currentYear, currentMonth+1);
+    if (currentMonth < 11) {
+        // check the next month documnets exist 
+        const nextMonthData = await Marking.find({ userId: _id, month: currentMonth + 2, year: currentYear });
+        if (nextMonthData.length === 0) {
+            // if not exist create new documnets
+            const dateList = upcomingDateCurrentMonth(currentYear, currentMonth + 1);
+            var i =1;
             for (let date of dateList) {
                 console.log(date)
-                await Marking.create({ userId: _id, day: date.day, year: date.year, month: date.month, mark: { B: 0, L: 0, S: 0 } });
+                await Marking.create({ userId: _id,day:i ,date: date.day, year: date.year, month: date.month, mark: { B: 0, L: 0, S: 0 } });
+                i += 1;
             }
         }
     }
+    // retrive all data in this month at date staring from next day
+    const todayNumber = new Date().getDate()
+    const currentMonthDataList = await Marking.find({ userId: _id, day:{ $gt: todayNumber } ,month: currentMonth + 1, year: currentYear });
+    console.log(currentMonthDataList)
+    if (currentMonth < 11) {
+        const nextMonthDataList = await Marking.find({ userId: _id, month: currentMonth + 10, year: currentYear })
+        return res.json({ currentMonth: currentMonthDataList, nextMonth: nextMonthDataList })
+    } else {
+        return res.json({ currentMonth: currentMonthDataList, nextMonth: null })
+    }
+
 }
