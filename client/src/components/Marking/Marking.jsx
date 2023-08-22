@@ -16,10 +16,20 @@ const Marking = () => {
     const navigate = useNavigate()
 
     const onChangeSelect = (e) => {
+        console.log(monthData);
         // console.log(monthMarking)
-        console.log("change function is called");
-        console.log(monthMarking)
-        
+        if(parseInt(e.target.value) === monthData.currentMonth[0].month){
+            setMonthMarking([
+                ...monthData.currentMonth
+            ])
+            console.log("current Month selected");
+        }else{
+            setMonthMarking([
+                ...monthData.nextMonth
+            ])
+            console.log(monthData)
+           console.log("next month selected");
+        }
     }
 
 

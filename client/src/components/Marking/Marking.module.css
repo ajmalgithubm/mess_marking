@@ -11,6 +11,7 @@
 .markingRow{
     display: flex;
     flex-direction: column;
+    margin-bottom: 100px;
 }
 .btn{
     margin-top: 20px;
