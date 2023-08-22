@@ -15,7 +15,7 @@ module.exports.verifyToken =(req, res, next) => {
         } else {
             console.log("User Id is ", data.id)
             const user = await User.findById(data.id);
-            return res.json({ status: true , us})
+            return res.json({ status: true , user})
         }
     })
 
