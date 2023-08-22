@@ -22,4 +22,5 @@ module.exports.signUp =async (req, res, next) => {
 
 module.exports.logIn = (req, res, next) => {
     console.log("Login Request Is Recieved..")
+    console.log("login Data ", req.body);
 }

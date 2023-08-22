@@ -18,7 +18,7 @@ const Marking = () => {
 
     // add Marking is function is trigger when the B, L ,S buttons pressed
     const addMarking = (e, item) => {
-        alert(`Y0u marked ${e.target.value} for ${item}`)
+        alert(`You marked ${e.target.value} for ${item}`)
     }
 
     // forcheck cookie exist in client side
@@ -29,9 +29,13 @@ const Marking = () => {
             }
             const { data } = await axios.post("http://localhost:4000", {}, { withCredentials: true });
             console.log('Verify toekn function is called', data)
+            const {status, user} = data;
+            if(!status){
+                navigate('/login')
+            }
+
         }
         verifyToken()
-
     }, [])
 
 
