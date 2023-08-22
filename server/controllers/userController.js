@@ -97,7 +97,8 @@ module.exports.messMarking = async (req, res, next) => {
     const currentMonthDataList = await Marking.find({ userId: _id, day:{ $gt: todayNumber } ,month: currentMonth + 1, year: currentYear });
     console.log(currentMonthDataList)
     if (currentMonth < 11) {
-        const nextMonthDataList = await Marking.find({ userId: _id, month: currentMonth + 10, year: currentYear })
+        const nextMonthDataList = await Marking.find({ userId: _id, month: currentMonth + 2, year: currentYear })
+        console.log("next month Marking  is ", nextMonthDataList);
         return res.json({ currentMonth: currentMonthDataList, nextMonth: nextMonthDataList })
     } else {
         return res.json({ currentMonth: currentMonthDataList, nextMonth: null })
