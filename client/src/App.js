@@ -1,11 +1,13 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import NavBar from './components/NavBar/NavBar';
-import Signup from './components/Signup/Signup';
-import Login from './components/Login/Login';
-import Profile from './components/Profile/Profile';
+import React, { Suspense } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Marking from './components/Marking/Marking';
 import 'react-toastify/dist/ReactToastify.css';
+const Signup = React.lazy(() => import('./components/Signup/Signup'))
+const Login =  React.lazy( () => import('./components/Login/Login'))
+const Profile = React.lazy( () => import('./components/Profile/Profile'))
+const Marking = React.lazy( () => import('./components/Marking/Marking'))
+const NavBar = React.lazy( () => import('./components/NavBar/NavBar'))
+
 
 
 function App() {
@@ -18,16 +20,16 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/signup' element={<Signup />} />
             <Route path='/profile' element={
-              <>
-                <Profile />
-                <NavBar />
-              </>
+              <Suspense fallback ={<h1>Loading..</h1>}>
+                <Profile/>
+                <NavBar/>
+              </Suspense>
             } />
             <Route path='/marking' element={
-              <>
+              <Suspense fallback={<h1>Loading..</h1>}>
                 <Marking />
                 <NavBar />
-              </>
+              </Suspense>
             } />
           </Routes>
         </div>

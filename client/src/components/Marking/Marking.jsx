@@ -21,19 +21,26 @@ const Marking = () => {
         alert(`You marked ${e.target.value} for ${item}`)
     }
 
-    // forcheck cookie exist in client side
+
     useEffect(() => {
+        const messmarking =async (user) => {
+            const {data} = await axios.post("http://localhost:4000/messMarking", {...user}, {withCredentials:true} );
+        }
+
+        // forcheck cookie exist in client side
         const verifyToken = async () => {
             if (!cookie.token) {
                 navigate('/login')
+                return
             }
             const { data } = await axios.post("http://localhost:4000", {}, { withCredentials: true });
             console.log('Verify toekn function is called', data)
             const {status, user} = data;
             if(!status){
                 navigate('/login')
+                return
             }
-
+            messmarking(user)
         }
         verifyToken()
     }, [])
