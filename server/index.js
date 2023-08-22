@@ -4,9 +4,11 @@ const app = express()
 const dotenv = require('dotenv')
 const mongoose = require("mongoose")
 const userRouter = require("./routers/userRoutes")
+const cookieParser = require("cookie-parser")
 
 dotenv.config()
 const PORT = process.env.PORT
+app.use(cookieParser())
 app.use(cors({
     origin: ['http://localhost:4000', 'http://localhost:3000'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],

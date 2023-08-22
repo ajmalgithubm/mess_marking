@@ -18,8 +18,9 @@ const Signup = () => {
         hostel: "",
         password: ""
     })
-    const {name, year, branch, email, number, hostel, password} = personDetails;
     const navigate = useNavigate();
+    const {name, year, branch, email, number, hostel, password} = personDetails;
+    
 
     {/*omChange function trigger when the input valuechnages*/}
     const onChange = (e) => {
@@ -70,6 +71,9 @@ const Signup = () => {
                 password: ""
             })
             document.getElementById("confirmPassword").value = "";
+            setTimeout(() => {
+                navigate("/")
+            }, 2000)
         }else{
             setStatus(true)
             setTitle(message)
@@ -87,7 +91,9 @@ const Signup = () => {
                     type={type} // success, warning, error, info
                     title={title}
                     quotes={false}
-                    Close={() => setStatus(false)}
+                    Close={() => {
+                        setStatus(false)
+                    }}
                 />
                 <div className={styles.image}>
                     <img src="/image/logo.png" alt="" />

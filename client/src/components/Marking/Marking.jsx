@@ -1,37 +1,38 @@
 import React, { useEffect, useState } from 'react'
 import styles from './Marking.module.css'
 import { currentMonthName, nextMonthName, upcomingDateCurrentMonth } from '../../Helperfunctions/monthDetails'
+import {useCookies} from 'react-cookie'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const Marking = () => {
+
+    // Cookie are give
+    const [cookie, removeCookies] = useCookies([]);
 
     // declare state for keeping the month Name current and next
     const [monthName, setMonthName] = useState([currentMonthName(), nextMonthName()])
     const [selectMonth, setSelectMonth] = useState(currentMonthName())
     const [dayList, setDayList] = useState()
+    const navigate = useNavigate()
 
     // add Marking is function is trigger when the B, L ,S buttons pressed
     const addMarking = (e, item) => {
         alert(`Y0u marked ${e.target.value} for ${item}`)
     }
 
-    // useEffect Function setMonth current Month and next Month for shows in options
+    // forcheck cookie exist in client side
     useEffect(() => {
+        const verifyToken = async () => {
+            if (!cookie.token) {
+                navigate('/login')
+            }
+            const { data } = await axios.post("http://localhost:4000", {}, { withCredentials: true });
+            console.log('Verify toekn function is called', data)
+        }
+        verifyToken()
 
-        (selectMonth === monthName[0]) ? setDayList(
-            upcomingDateCurrentMonth(
-                new Date().getFullYear(),
-                new Date().getMonth(),
-                true
-            )
-        ) : setDayList(
-            upcomingDateCurrentMonth(
-                new Date().getFullYear(),
-                new Date().getMonth()
-            )
-        )
-        console.log("selected Month", selectMonth)
-        console.log("Months are", monthName)
-    }, [selectMonth, addMarking])
+    }, [])
 
 
     return (

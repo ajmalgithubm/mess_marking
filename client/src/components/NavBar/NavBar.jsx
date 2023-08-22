@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './NavBar.module.css';
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom';
+
 const NavBar = () => {
+
     const navigate = useNavigate()
     return (
         <div className={styles.container}>

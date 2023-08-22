@@ -1,6 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './Profile.module.css'
+import {useCookies} from 'react-cookie'
 function Profile() {
+
+    const [cookie, removeCookies] = useCookies([]);
+    useEffect(() => {
+        console.log("cookie is ", cookie.token);
+    }, [])
     return (
         <div className={styles.container}>
             <div className={styles.profileContainer}>
