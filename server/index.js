@@ -26,4 +26,4 @@ mongoose.connect(process.env.MONGO_URL).then(() => {
 
 app.listen(PORT, () => {
     console.log(`server is Listening at ${PORT}`)
-}) 
+})  

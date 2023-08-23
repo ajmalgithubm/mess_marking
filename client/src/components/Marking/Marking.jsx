@@ -3,6 +3,7 @@ import styles from './Marking.module.css'
 import { useCookies } from 'react-cookie'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import Loading from '../Loading/Loading'
 
 const Marking = () => {
    
@@ -101,7 +102,7 @@ const Marking = () => {
             <div className={styles.markingContainer}>
                 <div className={styles.markingRow}>
                         {
-                            monthMarking?.map((item, index) => {
+                            monthMarking? monthMarking.map((item, index) => {
                                 return(
                                     <div className={styles.btn} key={item.date}>
                                         <p>{monthList[item.month-1]}: {item.day}</p>
@@ -110,7 +111,7 @@ const Marking = () => {
                                         <button value={item.mark.S} date={item.date} id={`${item.date}S`} name='S' onClick={(e) => addMenu(e, item.date, 'S', item.month)} className={item.mark.S ? styles.activeMenu : styles.inActiveMenu} >S</button>
                                     </div>
                                 )
-                            })
+                            }) : <Loading/>
                         }
                 </div>
             </div>
