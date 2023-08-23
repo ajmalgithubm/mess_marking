@@ -9,4 +9,7 @@ router.post('/', verifyToken )
 router.post('/messMarking', messMarking)
 router.post('/updateMess', updateMess)
 router.post('/getMessList', getMessList)
+router.get('/', (req, res) => {
+    res.send("<h1>Server is Running</h1>")
+})
 module.exports = router;
