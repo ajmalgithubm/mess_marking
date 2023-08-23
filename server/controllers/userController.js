@@ -84,17 +84,17 @@ module.exports.messMarking = async (req, res, next) => {
         if (nextMonthData.length === 0) {
             // if not exist create new documnets
             const dateList = upcomingDateCurrentMonth(currentYear, currentMonth + 1);
-            var i =1;
+            var i = 1;
             for (let date of dateList) {
                 console.log(date)
-                await Marking.create({ userId: _id,day:i ,date: date.day, year: date.year, month: date.month, mark: { B: 0, L: 0, S: 0 } });
+                await Marking.create({ userId: _id, day: i, date: date.day, year: date.year, month: date.month, mark: { B: 0, L: 0, S: 0 } });
                 i += 1;
             }
         }
     }
     // retrive all data in this month at date staring from next day
     const todayNumber = new Date().getDate()
-    const currentMonthDataList = await Marking.find({ userId: _id, day:{ $gt: todayNumber } ,month: currentMonth + 1, year: currentYear });
+    const currentMonthDataList = await Marking.find({ userId: _id, day: { $gt: todayNumber }, month: currentMonth + 1, year: currentYear });
     console.log(currentMonthDataList)
     if (currentMonth < 11) {
         const nextMonthDataList = await Marking.find({ userId: _id, month: currentMonth + 2, year: currentYear })
@@ -104,4 +104,45 @@ module.exports.messMarking = async (req, res, next) => {
         return res.json({ currentMonth: currentMonthDataList, nextMonth: null })
     }
 
+}
+
+// changing the mess marking
+
+module.exports.updateMess = async (req, res, next) => {
+    try {
+        console.log("POST Requeat recived for updation")
+        const { userId, date, name, value, month } = req.body;
+        let increment;
+        if (value === '0') {
+            increment = 1
+        } else {
+            increment = 0
+        }
+        console.log("api before")
+        const userUpdate = await Marking.updateOne({ userId: userId, date: date }, {
+            $set: {
+                [`mark.${name}`]: increment
+            }
+        })
+        const currentDay = req.body.month === new Date().getMonth() + 1 ? new Date().getDate() + 1 : 1
+        const monthList = await Marking.find({ userId, month, day: { $gte: currentDay}})
+        res.json({ status: true, message: 'successfully updated', monthList })
+    } catch (err) {
+        res.json({ status: false, message: err.message })
+        console.log("error found", err.message)
+    }
+}
+
+// take the  messlist for the month
+module.exports.getMessList = async (req, res, next) => {
+    try {
+        console.log("get mess list api is called");
+        const userId = req.body.userId
+        const month = req.body.month
+        const currentDay = req.body.month === new Date().getMonth() + 1 ? new Date().getDate() + 1 : 1;
+        const monthList = await Marking.find({userId, month, day:{ $gte: currentDay}})
+        res.json({ status: true, monthList})
+    } catch (err) {
+        res.json({ status: false, message: err.message})
+    }
 }

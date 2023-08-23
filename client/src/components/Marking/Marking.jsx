@@ -5,6 +5,9 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 const Marking = () => {
+   
+    const [user, setUser] = useState()
+    // only one month marking
     const [monthMarking, setMonthMarking] = useState()
     // set the marking Month
     const [monthData, setMonthData] = useState();
@@ -15,36 +18,58 @@ const Marking = () => {
 
     const navigate = useNavigate()
 
-    const onChangeSelect = (e) => {
-        console.log(monthData);
-        // console.log(monthMarking)
-        if(parseInt(e.target.value) === monthData.currentMonth[0].month){
+    // function trigger when The select the month options
+    const onChangeSelect =async (e) => {
+        // goto server and take data for corresponding month
+        const month = parseInt(e.target.value)
+        const { data } = await axios.post("http://localhost:4000/getMessList", { month, userId : user._id}, {withCredentials:true})
+        const { status, message, monthList} = data;
+        if(status){
+            // change the state of the month marking
             setMonthMarking([
-                ...monthData.currentMonth
+                ...monthList
             ])
-            console.log("current Month selected");
         }else{
-            setMonthMarking([
-                ...monthData.nextMonth
-            ])
-            console.log(monthData)
-           console.log("next month selected");
+            alert(`Error occur due to ${message}`)
         }
     }
 
+    // the function trigger when click the menu button
+    const addMenu = async(e, date, name, month) => {
+        // console.log("Clicked item is",name)
+        // console.log("Clicked value is ", e.target.value)
+        // console.log("Booked for the Date ", date)
+        const {data} = await axios.post('http://localhost:4000/updateMess', {
+            userId: user._id,
+            date,
+            name,
+            month,
+            value:e.target.value
+        }, {withCredentials:true})
+        const {status, monthList, message} = data;
+        if(status){
+            setMonthMarking([
+                ...monthList
+            ])
+        }else{
+            alert(`Error occur ${message}`)
+        }
+    }
+
+    // add new mark if don't exits and retrive mess Lsit
+    const messmarking = async (user) => {
+        const { data } = await axios.post("http://localhost:4000/messMarking", { ...user }, { withCredentials: true });
+        // console.log(data.currentMonth[0].month)
+        setMonthData({
+            ...data
+        })
+        setMonthMarking([
+            ...data.currentMonth
+        ])
+
+    }
 
     useEffect(() => {
-        const messmarking = async (user) => {
-            const { data } = await axios.post("http://localhost:4000/messMarking", { ...user }, { withCredentials: true });
-            // console.log(data.currentMonth[0].month)
-            setMonthData({
-                ...data
-            })
-            setMonthMarking([
-                ...data.currentMonth
-            ])
-            
-        }
         // forcheck cookie exist in client side
         const verifyToken = async () => {
             if (!cookie.token) {
@@ -58,6 +83,7 @@ const Marking = () => {
                 navigate('/login')
                 return
             }
+            setUser(user)
             messmarking(user)
         }
         verifyToken()
@@ -79,17 +105,13 @@ const Marking = () => {
                                 return(
                                     <div className={styles.btn} key={item.date}>
                                         <p>{monthList[item.month-1]}: {item.day}</p>
-                                        <button value={item.mark.B} name='B' >B</button>
-                                        <button value={item.mark.L} name='L' >L</button>
-                                        <button value={item.mark.S} name='S' >S</button>
+                                        <button value={item.mark.B} date={item.date} id={`${item.date}B`} onClick={(e) => addMenu(e, item.date, 'B', item.month)} name='B' className={item.mark.B?styles.activeMenu: styles.inActiveMenu}>B</button>
+                                        <button value={item.mark.L} date={item.date} id={`${item.date}L`} name='L' onClick={(e) =>addMenu(e, item.date, 'L', item.month)} className={item.mark.L ? styles.activeMenu : styles.inActiveMenu}>L</button>
+                                        <button value={item.mark.S} date={item.date} id={`${item.date}S`} name='S' onClick={(e) => addMenu(e, item.date, 'S', item.month)} className={item.mark.S ? styles.activeMenu : styles.inActiveMenu} >S</button>
                                     </div>
                                 )
                             })
                         }
-                        {/* <p></p>
-                        <button value="B" name='B' >B</button>
-                        <button value="L" name='L' >L</button>
-                        <button value="S" name='S' >S</button> */}
                 </div>
             </div>
         </div>

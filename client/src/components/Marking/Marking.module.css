@@ -19,23 +19,36 @@
     justify-content: space-between;
     align-self: center;
 }
-.btn button{
+.inActiveMenu{
     margin:auto 10px;
     padding: 5px 10px;
     font-size: 20px;
-    border: 1px solid rgba(128, 128, 128, 0.699);
+    border: 1px solid rgba(128, 128, 128, 0.514);
     cursor: pointer;
+    border-radius: 4px;
 }
 .btn p{
     font-size: 15px;
     font-weight: 500;
     margin-right: 10px;
 }
-.btn button:hover{
-    background-color: rgb(183, 201, 218);
+.activeMenu{
+    background-color: #0a4b88;
+    color: #e4e4e4e3;
+    margin: auto 10px;
+        padding: 5px 10px;
+        font-size: 20px;
+        border: 1px solid rgba(128, 128, 128, 0.514);
+        cursor: pointer;
+        border-radius: 4px;
 }
 select{
-    color:black;
+    color:rgb(0, 0, 0);
     margin: 10px ;
     padding:4px 10px;
+    font-size: 15px;
+}
+select option{
+   padding: 20px;
+  font-size: 15px;
 }
