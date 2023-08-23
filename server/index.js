@@ -18,12 +18,12 @@ app.use(express.json())
 app.use("/", userRouter)
 
  
-mongoose.connect(process.env.MONGO_URL).then(() => {
+mongoose.connect("mongodb+srv://ajmalm76774:Rzaimrbh7FJQdlg8@cluster0.r0bymvm.mongodb.net/?retryWrites=true&w=majority").then(() => {
     console.log("Mongodb Successfully Connected")
 }).catch(err => {
     console.log("Error", err)
 })
 
-app.listen(PORT, () => {
-    console.log(`server is Listening at ${PORT}`)
+app.listen(4000, () => {
+    console.log(`server is Listening at 4000`)
 })  

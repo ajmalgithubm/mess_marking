@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken")
 const dotenv = require('dotenv')
 const User = require('../models/userModel')
 dotenv.config()
+const SECRET_KEY = "AOPHCYEVUEBEB63TE873GF36R236BR72";
 module.exports.verifyToken =(req, res, next) => {
     console.log("post requesy for verify token is recived")
 
@@ -9,7 +10,7 @@ module.exports.verifyToken =(req, res, next) => {
     if (!token) {
         return res.json({ status: false })
     }
-    jwt.verify(token, process.env.SECRET_KEY,async (err, data) => {
+    jwt.verify(token, SECRET_KEY,async (err, data) => {
         if (err) {
             return res.json({ status: false })
         } else {
