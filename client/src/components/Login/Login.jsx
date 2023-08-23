@@ -28,7 +28,7 @@ const Login = () => {
   // onHandleSubmir trigger when submit the form
   const onHandleSubmit =async () => {
     console.log("Submit called");
-    const { data } = await axios.post("http://localhost:4000/login", { ...loginDetails}, { withCredentials: true});
+    const { data } = await axios.post("https://mess-marking-server.vercel.app/login", { ...loginDetails}, { withCredentials: true});
     const {status, message} = data;
     if(!status){
       setStatus(true)
