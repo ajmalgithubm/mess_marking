@@ -1,7 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import React, { Suspense } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import 'react-toastify/dist/ReactToastify.css';
 const Loading = React.lazy(() => import('./components/Loading/Loading'))
 const Signup = React.lazy(() => import('./components/Signup/Signup'))
 const Login =  React.lazy( () => import('./components/Login/Login'))
