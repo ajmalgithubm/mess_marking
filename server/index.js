@@ -10,7 +10,7 @@ dotenv.config()
 const PORT = process.env.PORT
 app.use(cookieParser())
 app.use(cors({
-    origin: ['http://localhost:4000', 'http://localhost:3000', 'https://mess-marking-client.vercel.app/', 'https://mess-marking-server.vercel.app/'],
+    origin: ['http://localhost:4000', 'http://localhost:3000', 'https://mess-marking-client.vercel.app', 'https://mess-marking-server.vercel.app'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }))
