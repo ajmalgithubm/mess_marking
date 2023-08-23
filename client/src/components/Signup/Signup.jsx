@@ -50,7 +50,7 @@ const Signup = () => {
     // { /*  function trigger when the form submit*/}
     const onHandleSubmit = async (e) => {
         e.preventDefault();
-        const { data } = await axios.post('mess-marking-server.vercel.app/signup', {
+        const { data } = await axios.post('https://mess-marking-server.vercel.app/signup', {
             ...personDetails
         },{
             withCredentials:true

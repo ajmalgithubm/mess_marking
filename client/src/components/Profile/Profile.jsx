@@ -14,7 +14,7 @@ function Profile() {
            if(!cookie.token){
             navigate("/login")
            }
-            const { data } = await axios.post("mess-marking-server.vercel.app", {}, { withCredentials: true })
+            const { data } = await axios.post("https://mess-marking-server.vercel.app", {}, { withCredentials: true })
            console.log("Data from server ",data);
            const {status, user} = data;
            if(!status){
