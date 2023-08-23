@@ -1,5 +1,5 @@
 .container{
-    background-color: rgb(248, 244, 244);
+    background-color: rgba(248, 244, 244, 0);
     min-height: 100vh;
 }
 .markingContainer{
@@ -34,7 +34,7 @@
 }
 .activeMenu{
     background-color: #0a4b88;
-    color: #e4e4e4e3;
+    color: #f3efefe3;
     margin: auto 10px;
         padding: 5px 10px;
         font-size: 20px;
@@ -47,8 +47,11 @@ select{
     margin: 10px ;
     padding:4px 10px;
     font-size: 15px;
+    background-color: rgb(182, 179, 179);
+    
 }
 select option{
    padding: 20px;
   font-size: 15px;
+ 
 }
