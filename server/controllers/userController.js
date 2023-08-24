@@ -9,11 +9,7 @@ module.exports.signUp = async (req, res, next) => {
         const token = await createToken(newUser.id)
         console.log('ID :', newUser.id);
         console.log("TOKEN: ", token);
-        res.cookie("token", token, {
-            withCredentials: true,
-            httpOnly: false
-        })
-        res.json({ status: true, message: "User Successfully added", user: newUser })
+        res.json({ status: true, message: "User Successfully added", user: newUser, token })
     } catch (err) {
         if (err.message.includes("E11000 duplicate key error")) {
             console.log("Duplication error occur")
@@ -37,8 +33,7 @@ module.exports.logIn = async (req, res, next) => {
             return res.json({ status: false, message: "Incorrect password" })
         }
         const token = await createToken(userExist.id)
-        res.cookie("token", token, { withCredentials: true, httpOnly: false })
-        res.json({ status: true, message: 'Successfully logged in' })
+        res.json({ status: true, message: 'Successfully logged in', token })
     } catch (err) {
         res.json({ status: false, message: err.message })
     }

@@ -6,7 +6,8 @@ const SECRET_KEY = "AOPHCYEVUEBEB63TE873GF36R236BR72";
 module.exports.verifyToken =(req, res, next) => {
     console.log("post requesy for verify token is recived")
 
-    const token = req.cookies.token
+    const token = req.body.token
+    console.log("token is", token)
     if (!token) {
         return res.json({ status: false })
     }

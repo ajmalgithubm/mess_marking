@@ -12,8 +12,6 @@ const Marking = () => {
     const [monthMarking, setMonthMarking] = useState()
     // set the marking Month
     const [monthData, setMonthData] = useState();
-    // Cookie are give
-    const [cookie, removeCookies] = useCookies([]);
     //month List in words
     const monthList = ['Janu', 'Feb', 'March', 'April', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
@@ -23,7 +21,7 @@ const Marking = () => {
     const onChangeSelect = async (e) => {
         // goto server and take data for corresponding month
         const month = parseInt(e.target.value)
-        const { data } = await axios.post("https://mess-marking-server.vercel.app/getMessList", { month, userId: user._id }, { withCredentials: true })
+        const { data } = await axios.post("http://localhost:4000/getMessList", { month, userId: user._id }, { withCredentials: true })
         const { status, message, monthList } = data;
         if (status) {
             // change the state of the month marking
@@ -40,7 +38,7 @@ const Marking = () => {
         // console.log("Clicked item is",name)
         // console.log("Clicked value is ", e.target.value)
         // console.log("Booked for the Date ", date)
-        const { data } = await axios.post('https://mess-marking-server.vercel.app/updateMess', {
+        const { data } = await axios.post('http://localhost:4000/updateMess', {
             userId: user._id,
             date,
             name,
@@ -59,8 +57,9 @@ const Marking = () => {
 
     // add new mark if don't exits and retrive mess Lsit
     const messmarking = async (user) => {
-        const { data } = await axios.post("https://mess-marking-server.vercel.app/messMarking", { ...user }, { withCredentials: true });
+        const { data } = await axios.post("http://localhost:4000/messMarking", { ...user }, { withCredentials: true });
         // console.log(data.currentMonth[0].month)
+        console.log("data",data)
         setMonthData({
             ...data
         })
@@ -73,11 +72,12 @@ const Marking = () => {
     useEffect(() => {
         // forcheck cookie exist in client side
         const verifyToken = async () => {
-            if (!cookie.token) {
+            const token = localStorage.getItem('token');
+            if (!token) {
                 navigate('/login')
                 return
             }
-            const { data } = await axios.post("https://mess-marking-server.vercel.app", {}, { withCredentials: true });
+            const { data } = await axios.post("http://localhost:4000", {token}, { withCredentials: true });
             console.log('Verify toekn function is called', data)
             const { status, user } = data;
             if (!status) {

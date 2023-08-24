@@ -28,8 +28,8 @@ const Login = () => {
   // onHandleSubmir trigger when submit the form
   const onHandleSubmit =async () => {
     console.log("Submit called");
-    const { data } = await axios.post("https://mess-marking-server.vercel.app/login", { ...loginDetails}, { withCredentials: true});
-    const {status, message} = data;
+    const { data } = await axios.post("http://localhost:4000/login", { ...loginDetails}, { withCredentials: true});
+    const {status, message, token} = data;
     if(!status){
       setStatus(true)
       setTitle(message)
@@ -38,6 +38,7 @@ const Login = () => {
       setStatus(true)
       setTitle(message)
       setType('success')
+      localStorage.setItem("token", token)
       setTimeout(() => {
         navigate('/')
       }, 2000)

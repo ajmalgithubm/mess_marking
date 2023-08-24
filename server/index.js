@@ -17,7 +17,7 @@ app.use(cors({
 app.use(express.json())
 app.use("/", userRouter)
 
- 
+  
 mongoose.connect("mongodb+srv://ajmalm76774:Rzaimrbh7FJQdlg8@cluster0.r0bymvm.mongodb.net/?retryWrites=true&w=majority").then(() => {
     console.log("Mongodb Successfully Connected")
 }).catch(err => {

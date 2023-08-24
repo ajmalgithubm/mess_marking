@@ -50,14 +50,15 @@ const Signup = () => {
     // { /*  function trigger when the form submit*/}
     const onHandleSubmit = async (e) => {
         e.preventDefault();
-        const { data } = await axios.post('https://mess-marking-server.vercel.app/signup', {
+        const { data } = await axios.post('http://localhost:4000/signup', {
             ...personDetails
         },{
             withCredentials:true
         })
-        const {status, message} = data;
+        const {status, message , token} = data;
         console.log(data)
         if(status){
+            localStorage.setItem("token", token)
             setStatus(true)
             setTitle(message)
             setType("success")

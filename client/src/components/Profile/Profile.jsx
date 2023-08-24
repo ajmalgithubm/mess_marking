@@ -1,34 +1,33 @@
 import React, { useEffect, useState } from 'react'
 import styles from './Profile.module.css'
-import {useCookies} from 'react-cookie'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Loading from '../Loading/Loading';
 function Profile() {
 
-    const [cookie, removeCookies] = useCookies([]);
     const [user, setUser] = useState()
     const navigate = useNavigate()
     useEffect(() => {
-        const verifyToken =async () => {
-           if(!cookie.token){
-            navigate("/login")
-           }
-            const { data } = await axios.post("https://mess-marking-server.vercel.app", {}, { withCredentials: true })
-           console.log("Data from server ",data);
-           const {status, user} = data;
-           if(!status){
-            navigate("/login")
-           }
-           setUser(user)
+        const verifyToken = async () => {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                navigate("/login")
+                return
+            }
+            const { data } = await axios.post("http://localhost:4000", {token}, { withCredentials: true })
+            console.log("Data from server ", data);
+            const { status, user } = data;
+            if (!status) {
+                navigate("/login")
+            }
+            setUser(user)
         }
         verifyToken()
-    }, [cookie, navigate])
+    }, [localStorage, navigate])
 
     // logout The User
     const logOut = () => {
-        removeCookies('token')
-        console.log("Now token is ", cookie.token)
+        localStorage.clear()
         navigate("/login")
     }
     return (
@@ -59,7 +58,7 @@ function Profile() {
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="gearIcon" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z"></path><path fill-rule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"></path></svg><span onClick={logOut}>Log Out</span>
                         </div>
                     </div>
-                </div>): <Loading/>
+                </div>) : <Loading />
             }
         </div>
     )
