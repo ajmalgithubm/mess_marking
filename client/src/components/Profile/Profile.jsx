@@ -14,7 +14,7 @@ function Profile() {
                 navigate("/login")
                 return
             }
-            const { data } = await axios.post("http://localhost:4000", {token}, { withCredentials: true })
+            const { data } = await axios.post("https://mess-marking-server.vercel.app", {token}, { withCredentials: true })
             console.log("Data from server ", data);
             const { status, user } = data;
             if (!status) {

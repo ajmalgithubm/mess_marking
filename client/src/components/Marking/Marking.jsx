@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import styles from './Marking.module.css'
-import { useCookies } from 'react-cookie'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import Loading from '../Loading/Loading'
@@ -21,7 +20,7 @@ const Marking = () => {
     const onChangeSelect = async (e) => {
         // goto server and take data for corresponding month
         const month = parseInt(e.target.value)
-        const { data } = await axios.post("http://localhost:4000/getMessList", { month, userId: user._id }, { withCredentials: true })
+        const { data } = await axios.post("https://mess-marking-server.vercel.app/getMessList", { month, userId: user._id }, { withCredentials: true })
         const { status, message, monthList } = data;
         if (status) {
             // change the state of the month marking
@@ -38,7 +37,7 @@ const Marking = () => {
         // console.log("Clicked item is",name)
         // console.log("Clicked value is ", e.target.value)
         // console.log("Booked for the Date ", date)
-        const { data } = await axios.post('http://localhost:4000/updateMess', {
+        const { data } = await axios.post('https://mess-marking-server.vercel.app/updateMess', {
             userId: user._id,
             date,
             name,
@@ -57,7 +56,7 @@ const Marking = () => {
 
     // add new mark if don't exits and retrive mess Lsit
     const messmarking = async (user) => {
-        const { data } = await axios.post("http://localhost:4000/messMarking", { ...user }, { withCredentials: true });
+        const { data } = await axios.post("https://mess-marking-server.vercel.app/messMarking", { ...user }, { withCredentials: true });
         // console.log(data.currentMonth[0].month)
         console.log("data",data)
         setMonthData({
@@ -77,7 +76,7 @@ const Marking = () => {
                 navigate('/login')
                 return
             }
-            const { data } = await axios.post("http://localhost:4000", {token}, { withCredentials: true });
+            const { data } = await axios.post("https://mess-marking-server.vercel.app", {token}, { withCredentials: true });
             console.log('Verify toekn function is called', data)
             const { status, user } = data;
             if (!status) {
