@@ -1,0 +1,77 @@
+.mainContainer {
+    position: relative;
+    width: 100%;
+}
+.container{
+    background-color:#333;
+    display: flex;
+    justify-content: end;
+    padding: 15px 10px;
+    width: 100%;
+}
+.barContainer{
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+   
+}
+.bar{
+    width: 25px;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.822);
+    margin-top: 4px;
+}
+.listContainer{
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    right: 0;
+   
+}
+.listContainer ul{
+   list-style: none;
+   background-color:#333;
+   border-top: 1px solid rgb(17, 16, 16);
+   border-right: 2px solid rgb(255, 255, 255);
+   display: none;
+   opacity: 0;
+   transform: translateY(-20px);
+   transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.listContainer ul li{
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.842);
+    letter-spacing: 1px;
+    padding:10px 19px;
+    cursor:pointer;
+}
+.listContainer ul li:hover{
+    background-color:rgba(199, 198, 198, 0.842);
+    color: #1b1b1b;
+}
+.tableContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.table{
+    padding: 10px;
+    min-width: 50vw;
+    display: center;
+}
+thead{
+    padding: 10px;
+    margin-left: 30px;
+}
+tr{
+    margin-top: 20px;
+    background-color: #1b1b1b;
+}
+td{
+    padding: 10px 20px;
+}

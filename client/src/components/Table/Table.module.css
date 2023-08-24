@@ -1,0 +1,35 @@
+ .container {
+     max-width: 800px;
+     margin: 20px auto;
+     background-color: rgb(0, 0, 0);
+     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+     border-radius: 8px;
+     overflow: scroll;
+ }
+
+ table {
+     width: 100%;
+     border-collapse: collapse;
+     
+ }
+
+ thead {
+     color: rgba(204, 27, 27, 0.801);
+     background-color: #333;
+ }
+
+ th,
+ td {
+     padding: 10px;
+     text-align: left;
+     border-bottom: 1px solid #dddddd38;
+     color: rgba(255, 255, 255, 0.801);
+     background-color: #333;
+ }
+
+ th {
+     background-color: #05050591;
+     color: rgba(255, 255, 255, 0.712);
+     text-shadow: none;
+ }
+

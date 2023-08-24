@@ -7,6 +7,7 @@ const Login =  React.lazy( () => import('./components/Login/Login'))
 const Profile = React.lazy( () => import('./components/Profile/Profile'))
 const Marking = React.lazy( () => import('./components/Marking/Marking'))
 const NavBar = React.lazy( () => import('./components/NavBar/NavBar'))
+const MarkingList = React.lazy(() => import('./components/MarkingList/MarkingList') )
 
 
 
@@ -40,6 +41,12 @@ function App() {
             <Route path='/marking' element={
               <Suspense fallback={<Loading/>}>
                 <Marking />
+                <NavBar />
+              </Suspense>
+            } />
+            <Route path='/markingList' element={
+              <Suspense fallback={<Loading />}>
+                <MarkingList/>
                 <NavBar />
               </Suspense>
             } />
