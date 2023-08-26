@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './MarkingList.module.css';
 import Table from '../Table/Table';
-import axios from 'axios';
+import Loading from '../Loading/Loading';
 const MarkingList = () => {
     const [selectedMonth, setSelectedMonth] = useState();
     const [months, setMonths] = useState();
@@ -53,7 +53,7 @@ const MarkingList = () => {
     }
     return (
         <>
-            <div className={styles.mainContainer}>
+            selectedMonth ? (<div className={styles.mainContainer}>
                 <div className={styles.container}>
                     <div className={styles.barContainer} onClick={showDropDown}>
                         <div className={styles.bar}></div>
@@ -66,15 +66,15 @@ const MarkingList = () => {
                         {
                             months && (
                                 <>
-                                    <li onClick={() => fetchMonthList(months.currentMonth) }>{monthWords[months.currentMonth-1]}</li>
-                                    <li onClick={() => fetchMonthList( months.nextMonth) }>{monthWords[months.nextMonth-1]}</li>
+                                    <li onClick={() => fetchMonthList(months.currentMonth)}>{monthWords[months.currentMonth - 1]}</li>
+                                    <li onClick={() => fetchMonthList(months.nextMonth)}>{monthWords[months.nextMonth - 1]}</li>
                                 </>
                             )
                         }
                     </ul>
                 </div>
             </div>
-            <Table selectedMonth = {selectedMonth}/>
+            <Table selectedMonth={selectedMonth} />) : <Loading/>
         </>
 
     )
