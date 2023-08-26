@@ -9,7 +9,7 @@ module.exports.signUp = async (req, res, next) => {
         const token = await createToken(newUser.id)
         console.log('ID :', newUser.id);
         console.log("TOKEN: ", token);
-        res.json({ status: true, message: "User Successfully added", user: newUser, token })
+        res.json({ status: true, message: "User Successfully added", userId: newUser._id, token })
     } catch (err) {
         if (err.message.includes("E11000 duplicate key error")) {
             console.log("Duplication error occur")

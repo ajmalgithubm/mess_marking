@@ -55,10 +55,11 @@ const Signup = () => {
         },{
             withCredentials:true
         })
-        const {status, message , token} = data;
+        const {status, message , token, userId} = data;
         console.log(data)
         if(status){
             localStorage.setItem("token", token)
+            localStorage.setItem("userId", userId)
             setStatus(true)
             setTitle(message)
             setType("success")

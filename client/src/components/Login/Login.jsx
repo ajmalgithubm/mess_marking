@@ -39,7 +39,7 @@ const Login = () => {
       setTitle(message)
       setType('success')
       localStorage.setItem("token", token)
-      localStorage.setItem("userId", userId)
+      localStorage.setItem("userId", userId._id)
       setTimeout(() => {
         navigate('/')
       }, 2000)
