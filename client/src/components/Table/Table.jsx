@@ -4,6 +4,7 @@ import axios from 'axios';
 const Table = () => {
 
     const [monthList, setMonthList] = useState();
+    const month = ['January', 'February', 'March', 'April', 'May', "June", 'July', "August", "September", "October", "November", "December"]
     useEffect(() => {
         const getAllProduct = async () => {
             const userId = localStorage.getItem("userId");
@@ -20,7 +21,7 @@ const Table = () => {
     return (
         <div>
             <div class={styles.container}>
-                <h3 className={styles.h3}>August Marking</h3>
+                <h3 className={styles.h3}>{monthList && month[monthList[0].month]}</h3>
                 <table>
                     <thead>
                         <tr>
