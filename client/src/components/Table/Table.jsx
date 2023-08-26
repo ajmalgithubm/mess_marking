@@ -36,9 +36,9 @@ const Table = () => {
                                 return(
                                     <tr key={index}>
                                         <td>{item.day}</td>
-                                        <td className={styles.done}>Done</td>
-                                        <td className={styles.nope}>Nope</td>
-                                        <td className={styles.nope}>Nope</td>
+                                        <td className={item.mark.B ? styles.done : styles.nope}> {item.mark.B ? "Done" : "Nope"}</td>
+                                        <td className={item.mark.L ? styles.done : styles.nope}> {item.mark.B ? "Done" : "Nope"}</td>
+                                        <td className={item.mark.S ? styles.done : styles.nope}> {item.mark.B ? "Done" : "Nope"}</td>
                                     </tr>
                                 )
                             })
