@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styles from './MarkingList.module.css';
 import Table from '../Table/Table';
+import axios from 'axios';
 const MarkingList = () => {
+    const [selectedMonth, setSelectedMonth] = useState();
     const [months, setMonths] = useState();
     const [monthWords] = useState( ['January', 'February', 'March', 'April', 'May', "June", 'July', "August", "September", "October", "November", "December"])
     useEffect(() => {
@@ -37,8 +39,16 @@ const MarkingList = () => {
 
     }
 
-    const fetchMonthList = () => {
+    const fetchMonthList =async (month) => {
         showDropDown()
+        setSelectedMonth(month)
+        // const userId = localStorage.getItem("userId")
+        // const { data } = await axios.post("https://mess-marking-server.vercel.app/getAllMessList", {
+        //     month,
+        //     userId
+        // })
+        // // console.log(data.messList)
+        // setMessList(data.messLIst)
     }
     return (
         <>
@@ -55,15 +65,15 @@ const MarkingList = () => {
                         {
                             months && (
                                 <>
-                                    <li onClick={fetchMonthList}>{monthWords[months.currentMonth]}</li>
-                                    <li onClick={fetchMonthList}>{monthWords[months.nextMonth]}</li>
+                                    <li onClick={() => fetchMonthList(months.currentMonth) }>{monthWords[months.currentMonth]}</li>
+                                    <li onClick={() => fetchMonthList( months.nextMonth) }>{monthWords[months.nextMonth]}</li>
                                 </>
                             )
                         }
                     </ul>
                 </div>
             </div>
-            <Table />
+            <Table selectedMonth = {selectedMonth}/>
         </>
 
     )

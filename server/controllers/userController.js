@@ -145,7 +145,7 @@ module.exports.getMessList = async (req, res, next) => {
 module.exports.getAllMessList =async (req, res, next) => {
     try{
         const userId = req.body.userId;
-        const month = req.body.month;
+        const month = req.body.month ? req.body.month : new Date().getDate()+1 ;
         const messList = await Marking.find({userId, month});
         console.log("API is called")
         res.json({ status: true, messList: messList})

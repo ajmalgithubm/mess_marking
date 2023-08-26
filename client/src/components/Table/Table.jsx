@@ -6,10 +6,10 @@ const Table = (props) => {
 
     const [monthList, setMonthList] = useState();
     const month = ['January', 'February', 'March', 'April', 'May', "June", 'July', "August", "September", "October", "November", "December"];
-    const getAllProduct = async (month = new Date().getMonth() + 1) => {
+    const getAllProduct = async () => {
         const userId = localStorage.getItem("userId");
         const { data } = await axios.post("https://mess-marking-server.vercel.app/getAllMessList", {
-            month,
+            month: props.selectedMonth,
             userId
         })
         setMonthList(data.messList)
