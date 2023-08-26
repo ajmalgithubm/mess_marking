@@ -12,7 +12,7 @@ const MarkingList = () => {
             nextMonth: new Date().getMonth() + 2
         })
         console.log(months)
-    }, [])
+    }, [selectedMonth])
     const showDropDown = (e) => {
         const listItems = document.getElementById("listItems");
         if (!listItems.style.display) {
