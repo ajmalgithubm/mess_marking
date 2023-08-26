@@ -17,7 +17,7 @@ const Table = (props) => {
     }
     useEffect(() => {
         getAllProduct()
-    }, [])
+    }, [props])
     return (
         <div>
             {
