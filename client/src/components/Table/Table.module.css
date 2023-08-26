@@ -12,7 +12,12 @@
     margin-bottom: 20px;
     margin-left: 10px;
 }
-
+.done{
+    background-color: green;
+}
+.nope{
+    background-color: red;
+}
  table {
      width: 100%;
      border-collapse: collapse;

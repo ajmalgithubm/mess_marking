@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Table.module.css';
 import axios from 'axios';
 const Table = () => {
 
+    const [monthList, setMonthList] = useState();
     useEffect(() => {
         const getAllProduct = async () => {
             const userId = localStorage.getItem("userId");
@@ -11,6 +12,7 @@ const Table = () => {
                 month,
                 userId
             })
+            setMonthList(data.messList)
             console.log(data)
         }
         getAllProduct()
@@ -29,30 +31,18 @@ const Table = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>5</td>
-                            <td style={{ backgroundColor: 'green' }}>Done</td>
-                            <td style={{ backgroundColor: 'red' }}>Nope</td>
-                            <td style={{ backgroundColor: 'red' }}>Nope</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td style={{ backgroundColor: 'green' }}>Done</td>
-                            <td style={{ backgroundColor: 'red' }}>Nope</td>
-                            <td style={{ backgroundColor: 'green' }}>Done</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td style={{ backgroundColor: 'green' }}>Done</td>
-                            <td style={{ backgroundColor: 'red' }}>Nope</td>
-                            <td style={{ backgroundColor: 'green' }}>Done</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td style={{ backgroundColor: 'green' }}>Done</td>
-                            <td style={{ backgroundColor: 'red' }}>Nope</td>
-                            <td style={{ backgroundColor: 'green' }}>Done</td>
-                        </tr>
+                        {
+                            monthList?.map((item, index) => {
+                                return(
+                                    <tr key={index}>
+                                        <td>{item.day}</td>
+                                        <td className={styles.done}>Done</td>
+                                        <td className={styles.nope}>Nope</td>
+                                        <td className={styles.nope}>Nope</td>
+                                    </tr>
+                                )
+                            })
+                        }
                     </tbody>
                 </table>
             </div>

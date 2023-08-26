@@ -147,6 +147,7 @@ module.exports.getAllMessList =async (req, res, next) => {
         const userId = req.body.userId;
         const month = req.body.month;
         const messList = await Marking.find({userId, month});
+        console.log("API is called")
         res.json({ status: true, messList: messList})
     }catch(err){
         res.json({ status: false, message: err.message})
