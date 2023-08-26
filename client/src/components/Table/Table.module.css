@@ -13,10 +13,10 @@
     margin-left: 10px;
 }
 .done{
-    background-color: green;
+    background-color: rgb(44, 138, 44);
 }
 .nope{
-    background-color: red;
+    background-color: rgb(218, 19, 19);
 }
  table {
      width: 100%;
