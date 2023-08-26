@@ -53,28 +53,34 @@ const MarkingList = () => {
     }
     return (
         <>
-            selectedMonth ? (<div className={styles.mainContainer}>
-                <div className={styles.container}>
-                    <div className={styles.barContainer} onClick={showDropDown}>
-                        <div className={styles.bar}></div>
-                        <div className={styles.bar}></div>
-                        <div className={styles.bar}></div>
+
+        {
+            selectedMonth ? (<>
+                    <div className={styles.mainContainer}>
+                        <div className={styles.container}>
+                            <div className={styles.barContainer} onClick={showDropDown}>
+                                <div className={styles.bar}></div>
+                                <div className={styles.bar}></div>
+                                <div className={styles.bar}></div>
+                            </div>
+                        </div>
+                        <div className={styles.listContainer}>
+                            <ul id='listItems'>
+                                {
+                                    months && (
+                                        <>
+                                            <li onClick={() => fetchMonthList(months.currentMonth)}>{monthWords[months.currentMonth - 1]}</li>
+                                            <li onClick={() => fetchMonthList(months.nextMonth)}>{monthWords[months.nextMonth - 1]}</li>
+                                        </>
+                                    )
+                                }
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div className={styles.listContainer}>
-                    <ul id='listItems'>
-                        {
-                            months && (
-                                <>
-                                    <li onClick={() => fetchMonthList(months.currentMonth)}>{monthWords[months.currentMonth - 1]}</li>
-                                    <li onClick={() => fetchMonthList(months.nextMonth)}>{monthWords[months.nextMonth - 1]}</li>
-                                </>
-                            )
-                        }
-                    </ul>
-                </div>
-            </div>
-            <Table selectedMonth={selectedMonth} />) : <Loading/>
+                    <Table selectedMonth={selectedMonth} />
+            </>) : <Loading/>
+        }
+
         </>
 
     )
