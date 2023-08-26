@@ -1,11 +1,17 @@
  .container {
      max-width: 800px;
      margin: 20px auto;
-     background-color: rgb(0, 0, 0);
      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
      border-radius: 8px;
      overflow: scroll;
  }
+.h3{
+    font-size: 20px;
+    font-weight: 600;
+    color: #000000e7;
+    margin-bottom: 20px;
+    margin-left: 10px;
+}
 
  table {
      width: 100%;

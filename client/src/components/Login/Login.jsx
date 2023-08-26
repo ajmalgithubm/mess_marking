@@ -29,7 +29,7 @@ const Login = () => {
   const onHandleSubmit =async () => {
     console.log("Submit called");
     const { data } = await axios.post("https://mess-marking-server.vercel.app/login", { ...loginDetails}, { withCredentials: true});
-    const {status, message, token} = data;
+    const {status, message, token, userId} = data;
     if(!status){
       setStatus(true)
       setTitle(message)
@@ -39,6 +39,7 @@ const Login = () => {
       setTitle(message)
       setType('success')
       localStorage.setItem("token", token)
+      localStorage.setItem("userId", userId)
       setTimeout(() => {
         navigate('/')
       }, 2000)

@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './Table.module.css';
 const Table = () => {
+
+    useEffect(() => {
+        console.log("Table ia mounted")
+    }, [])
   return (
     <div>
           <div class={styles.container}>
+            <h3 className={styles.h3}>August Marking</h3>
               <table>
                   <thead>
                       <tr>

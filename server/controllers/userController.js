@@ -33,7 +33,7 @@ module.exports.logIn = async (req, res, next) => {
             return res.json({ status: false, message: "Incorrect password" })
         }
         const token = await createToken(userExist.id)
-        res.json({ status: true, message: 'Successfully logged in', token })
+        res.json({ status: true, message: 'Successfully logged in', token , userId : userExist})
     } catch (err) {
         res.json({ status: false, message: err.message })
     }
