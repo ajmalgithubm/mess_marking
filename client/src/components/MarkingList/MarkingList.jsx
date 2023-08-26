@@ -66,8 +66,8 @@ const MarkingList = () => {
                         {
                             months && (
                                 <>
-                                    <li onClick={() => fetchMonthList(months.currentMonth) }>{monthWords[months.currentMonth]}</li>
-                                    <li onClick={() => fetchMonthList( months.nextMonth) }>{monthWords[months.nextMonth]}</li>
+                                    <li onClick={() => fetchMonthList(months.currentMonth) }>{monthWords[months.currentMonth-1]}</li>
+                                    <li onClick={() => fetchMonthList( months.nextMonth) }>{monthWords[months.nextMonth-1]}</li>
                                 </>
                             )
                         }
