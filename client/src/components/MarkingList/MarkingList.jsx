@@ -53,7 +53,7 @@ const MarkingList = () => {
     }
     return (
         <>
-            selectedMonth && (<div className={styles.mainContainer}>
+           <div className={styles.mainContainer}>
                 <div className={styles.container}>
                     <div className={styles.barContainer} onClick={showDropDown}>
                         <div className={styles.bar}></div>
@@ -74,7 +74,7 @@ const MarkingList = () => {
                     </ul>
                 </div>
             </div>
-            <Table selectedMonth={selectedMonth} />) 
+            <Table selectedMonth={selectedMonth} />
         </>
 
     )
