@@ -21,7 +21,7 @@ const Table = () => {
     return (
         <div>
             <div class={styles.container}>
-                <h3 className={styles.h3}>{monthList && month[monthList[0].month]}</h3>
+                <h3 className={styles.h3}>{monthList && month[monthList[0].month -1]} Marking</h3>
                 <table>
                     <thead>
                         <tr>
