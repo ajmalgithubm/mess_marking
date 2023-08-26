@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './Table.module.css';
 import axios from 'axios';
 import Loading from '../Loading/Loading'
-const Table = () => {
+const Table = (props) => {
 
     const [monthList, setMonthList] = useState();
     const month = ['January', 'February', 'March', 'April', 'May', "June", 'July', "August", "September", "October", "November", "December"];
