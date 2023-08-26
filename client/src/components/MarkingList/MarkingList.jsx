@@ -8,8 +8,8 @@ const MarkingList = () => {
     const [monthWords] = useState( ['January', 'February', 'March', 'April', 'May', "June", 'July', "August", "September", "October", "November", "December"])
     useEffect(() => {
         setMonths({
-            currentMonth: new Date().getMonth(),
-            nextMonth: new Date().getMonth() + 1
+            currentMonth: new Date().getMonth()+1,
+            nextMonth: new Date().getMonth() + 2
         })
         console.log(months)
     }, [])
@@ -42,6 +42,7 @@ const MarkingList = () => {
     const fetchMonthList =async (month) => {
         showDropDown()
         setSelectedMonth(month)
+        console.log(month)
         // const userId = localStorage.getItem("userId")
         // const { data } = await axios.post("https://mess-marking-server.vercel.app/getAllMessList", {
         //     month,
